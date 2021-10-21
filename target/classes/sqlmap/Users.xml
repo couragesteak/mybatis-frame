@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+    <!-- 根据id查询user -->
+    <select id="findUserById" parameterType="int" resultType="net920vip.bean.UserBean">
+        select * from user where id = #{id}
+    </select>
+    <!-- 根据用户名模糊查询 -->
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="net920vip.bean.UserBean">
+        select * from user where username like '%${value}%'
+    </select>
+
+    <!-- 新增用户 -->
+    <insert id="insertUser" parameterType="net920vip.bean.UserBean">
+        insert into user(username,sex,birthday,address) values(#{username},#{sex},#{birthday},#{address})
+    </insert>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUserById" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+    <!-- 修改用户 -->
+    <update id="updateUserById" parameterType="net920vip.bean.UserBean">
+        update user set username=#{username},
+                        sex=#{sex},
+                        birthday=#{birthday},
+                        address=#{address}
+                        where id = #{id}
+
+    </update>
+    
+</mapper>
