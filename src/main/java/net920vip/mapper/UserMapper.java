@@ -20,4 +20,7 @@ public interface UserMapper {
     public int updateUserById(UserBean user) throws Exception;
     // 根据user删除user
     public int deleteUserById(int id) throws Exception;
+    // 传递pojo综合查询用户信息
+    public List<UserBean> findUserList(UserBean USER) throws Exception;
+
 }

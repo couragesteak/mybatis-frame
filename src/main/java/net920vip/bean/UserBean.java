@@ -12,6 +12,10 @@ public class UserBean {
     public UserBean() {
     }
 
+    public UserBean(int id) {
+        this.id = id;
+    }
+
     public UserBean(int id, String username, String sex, Date birthday, String address) {
         this.id = id;
         this.username = username;

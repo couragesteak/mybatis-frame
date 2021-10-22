@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
-import java.util.Date;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -51,28 +51,39 @@ public class Test {
 //        sqlSession.commit();
 
 
-// ---------------Mappper接口开发测试-------------
+        // ---------------Mappper接口开发测试-------------
         // 使用动态代理获得UserMapper接口的代理对象
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
-// 查询
-//UserBean user = userMapper.findUserById(10);
-//System.out.println(user);
+        // 查询
+//        UserBean user = userMapper.findUserById(10);
+//        System.out.println(user);
 
-// 新增
-//UserBean user1 = new UserBean(20,"李白", "2",new Date(), "666");
-//userMapper.insertUser(user1);
-//sqlSession.commit();
-//sqlSession.close();
+        // 新增
+        //UserBean user1 = new UserBean(20,"李白", "2",new Date(), "666");
+        //userMapper.insertUser(user1);
+        //sqlSession.commit();
+        //sqlSession.close();
 
-// 修改
-UserBean user1 = new UserBean(26,"李白", "2",new Date(), "666");
-userMapper.updateUserById(user1);
-sqlSession.commit();
-sqlSession.close();
+        // 修改
+//        UserBean user1 = new UserBean(26, "李白2", "2", new Date(), "666");
+//        userMapper.updateUserById(user1);
+//        sqlSession.commit();
+//        sqlSession.close();
 
-// 删除
-// userMapper.deleteUserById(1);
+        // 删除
+        // userMapper.deleteUserById(1);
+
+
+        // 使用sql片段，综合查询测试
+        List<UserBean> userList = userMapper.findUserList(null);
+        // 查询所有
+        //System.out.println(userList.toString());
+
+        UserBean user = new UserBean();
+        user.setId(10);
+        List<UserBean> userList1 = userMapper.findUserList(user);
+        System.out.println(userList1.toString());
 
     }
 }

@@ -3,13 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net920vip.mapper.UserMapper">
+
+
+    <!-- resultMap -->
+    <resultMap type="net920vip.bean.UserBean" id="userResultMap">
+        <!-- 要那几个字段 写哪几个字段 -->
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="sex" property="sex"/>
+    </resultMap>
+
+
     <!-- 根据id查询user -->
-    <select id="findUserById" parameterType="int" resultType="net920vip.bean.UserBean">
-        select * from user where id = #{id}
+    <select id="findUserById" parameterType="int" resultType="UserBean">
+    select * from user where id = #{id}
     </select>
+    <!-- 根据id查询user 对应resultMap -->
+    <!--    <select id="findUserById" parameterType="int"-->
+    <!--            resultMap="userResultMap">-->
+    <!--    select * from user where id = #{id}-->
+    <!--    </select>-->
+
     <!-- 根据用户名模糊查询 -->
     <select id="findUserByUsername" parameterType="java.lang.String" resultType="net920vip.bean.UserBean">
-        select * from user where username like '%${value}%'
+    select * from user where username like '%${value}%'
     </select>
 
     <!-- 新增用户 -->
@@ -31,5 +48,28 @@
                         where id = #{id}
 
     </update>
+
+    <!-- 传递pojo综合查询用户信息 -->
+    <!--<select id="findUserList" parameterType="UserBean" resultType="UserBean">-->
+    <!--    select * from user where 1=1-->
+    <!--    <if test="id!=null and id!=''">-->
+    <!--        and id=#{id}-->
+    <!--    </if>-->
+    <!--    <if test="username!=null and username!=''">-->
+    <!--        and username like "%#{username}%"-->
+    <!--    </if>-->
+    <!--</select>-->
+
+    <select id="findUserList" parameterType="UserBean" resultType="UserBean">
+        select * from user
+        <where>
+            <if test="id!=null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="username!=null and username!=''">
+                and username like "%#{username}%"
+            </if>
+        </where>
+    </select>
 
 </mapper>
