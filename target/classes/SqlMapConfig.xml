@@ -5,14 +5,16 @@
 <configuration>
 
 <properties resource="db.properties"/>
+
 <!-- 配置别名 -->
 <typeAliases>
     <!-- 单个别名  -->
 <!--        <typeAlias alias="user" type="net920vip.bean.UserBean" />-->
 
     <!-- 批量别名 别名：类名(首字母大小写均可) -->
-    <package name="net920vip.bean"/>
+    <package name="net920vip"/>
 </typeAliases>
+
 <!-- 和spring整合后 environments配置将废除-->
 <environments default="development">
     <environment id="development">

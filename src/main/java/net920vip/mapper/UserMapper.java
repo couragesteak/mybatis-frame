@@ -23,4 +23,7 @@ public interface UserMapper {
     // 传递pojo综合查询用户信息
     public List<UserBean> findUserList(UserBean USER) throws Exception;
 
+    // 批量根据ids查询
+    public List<UserBean> selectUserByIds(List<Integer> list) throws Exception;
+
 }

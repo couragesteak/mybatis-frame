@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Test {
@@ -75,15 +77,26 @@ public class Test {
         // userMapper.deleteUserById(1);
 
 
-        // 使用sql片段，综合查询测试
+//        // 使用sql片段，综合查询测试
         List<UserBean> userList = userMapper.findUserList(null);
-        // 查询所有
-        //System.out.println(userList.toString());
+//        // 查询所有
+        System.out.println(userList.toString());
+//
+//        UserBean user = new UserBean();
+//        user.setId(10);
+//        List<UserBean> userList1 = userMapper.findUserList(user);
+//        System.out.println(userList1.toString());
 
-        UserBean user = new UserBean();
-        user.setId(10);
-        List<UserBean> userList1 = userMapper.findUserList(user);
-        System.out.println(userList1.toString());
+
+        // 使用foreach动态sql,批量查询  传空 null：查询所有
+//        ArrayList<Integer> list = new ArrayList<>();
+
+//        list.add(1);
+//        list.add(10);
+//        List<UserBean> users = userMapper.selectUserByIds(list);
+
+//        List<UserBean> users = userMapper.selectUserByIds(Arrays.asList(1,10));
+//        System.out.println(users.toString());
 
     }
 }

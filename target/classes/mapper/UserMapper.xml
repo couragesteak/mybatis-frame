@@ -13,6 +13,16 @@
         <result column="sex" property="sex"/>
     </resultMap>
 
+    <!-- 抽取模板-->
+    <sql id="query_user_sql">
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="username!=null and username!=''">
+            and username like "%#{username}%"
+        </if>
+    </sql>
+
 
     <!-- 根据id查询user -->
     <select id="findUserById" parameterType="int" resultType="UserBean">
@@ -50,24 +60,36 @@
     </update>
 
     <!-- 传递pojo综合查询用户信息 -->
-<!--    <select id="findUserList" parameterType="UserBean" resultType="UserBean">-->
-<!--        select * from user where 1=1-->
-<!--        <if test="id!=null and id!=''">-->
-<!--            and id=#{id}-->
-<!--        </if>-->
-<!--        <if test="username!=null and username!=''">-->
-<!--            and username like "%#{username}%"-->
-<!--        </if>-->
-<!--    </select>-->
+    <!--<select id="findUserList" parameterType="UserBean" resultType="UserBean">-->
+    <!--    select * from user where 1=1-->
+    <!--    <if test="id!=null and id!=''">-->
+    <!--        and id=#{id}-->
+    <!--    </if>-->
+    <!--    <if test="username!=null and username!=''">-->
+    <!--        and username like "%#{username}%"-->
+    <!--    </if>-->
+    <!--</select>-->
 
     <select id="findUserList" parameterType="UserBean" resultType="UserBean">
         select * from user
         <where>
-            <if test="id!=null and id!=''">
-                and id=#{id}
-            </if>
-            <if test="username!=null and username!=''">
-                and username like "%#{username}%"
+<!--            <if test="id!=null and id!=''">-->
+<!--                and id=#{id}-->
+<!--            </if>-->
+<!--            <if test="username!=null and username!=''">-->
+<!--                and username like "%#{username}%"-->
+<!--            </if>-->
+        <include refid="query_user_sql"/>
+        </where>
+    </select>
+
+    <select id="selectUserByIds" parameterType="java.util.List" resultType="UserBean">
+        select * from user
+        <where>
+            <if test="list != null">
+                <foreach collection="list" item="id" open="and id in(" separator="," close=")">
+                    #{id}
+                </foreach>
             </if>
         </where>
     </select>
