@@ -1,5 +1,7 @@
 package net920vip.mapper;
 
+import net920vip.bean.Orders;
+import net920vip.bean.OrdersCustom;
 import net920vip.bean.UserBean;
 
 import java.util.List;
@@ -25,5 +27,14 @@ public interface UserMapper {
 
     // 批量根据ids查询
     public List<UserBean> selectUserByIds(List<Integer> list) throws Exception;
+
+    // 一对一查询：查询所有orders，关联其下单用户 resultTypt方式
+    public List<OrdersCustom> findOrdersList() throws Exception;
+
+    // 一对一查询：查询所有orders，关联其下单用户 resultMap方式
+    public List<Orders> findOrdersListMap() throws Exception;
+
+    // 一对多查询：查询orders，关联orderdetail，只能用resultMap方式
+    public List<Orders> findOrdersDetailList() throws Exception;
 
 }

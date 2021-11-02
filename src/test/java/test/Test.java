@@ -1,6 +1,7 @@
 package test;
 
-import net920vip.bean.UserBean;
+import net920vip.bean.Orders;
+import net920vip.bean.OrdersCustom;
 import net920vip.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -8,8 +9,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Test {
@@ -78,9 +77,9 @@ public class Test {
 
 
 //        // 使用sql片段，综合查询测试
-        List<UserBean> userList = userMapper.findUserList(null);
-//        // 查询所有
-        System.out.println(userList.toString());
+//        List<UserBean> userList = userMapper.findUserList(null);
+////        // 查询所有
+//        System.out.println(userList.toString());
 //
 //        UserBean user = new UserBean();
 //        user.setId(10);
@@ -90,13 +89,37 @@ public class Test {
 
         // 使用foreach动态sql,批量查询  传空 null：查询所有
 //        ArrayList<Integer> list = new ArrayList<>();
-
-//        list.add(1);
-//        list.add(10);
-//        List<UserBean> users = userMapper.selectUserByIds(list);
-
-//        List<UserBean> users = userMapper.selectUserByIds(Arrays.asList(1,10));
+//
+//        // list.add(1);
+//        // list.add(10);
+//        // List<UserBean> users = userMapper.selectUserByIds(list);
+//
+//        List<UserBean> users = userMapper.selectUserByIds(Arrays.asList(1, 10));
 //        System.out.println(users.toString());
 
+
+        // 一对一查询 orders关联user：resultType方式
+//        List<OrdersCustom> list = userMapper.findOrdersList();
+//        for (OrdersCustom ordersCustom : list) {
+//            System.out.println(ordersCustom.getNumber());
+//            System.out.println(ordersCustom.getUsername());
+//        }
+
+// 一对一查询 orders关联user：resultMap方式
+//        List<Orders> list = userMapper.findOrdersListMap();
+//        System.out.println(list);
+//        System.out.println(list.get(0).getUserBean().getUsername());
+//
+//        for (Orders i : list) {
+//            System.out.println(i);
+//        }
+
+//        List<Orders> list = userMapper.findOrdersDetailList();
+//        System.out.println(list);
+//        System.out.println(list.get(0).getOrderdetails());
+//
+//        for (Orders i : list) {
+//            System.out.println(i);
+//        }
     }
 }
