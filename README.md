@@ -11,10 +11,3 @@
 5. [javaWeb MyBatis（五）Mapper.xml定义](https://www.920vip.net/article/147)
 
 
-
-
-
-有勇气的牛排：
-
-官网：[https://www.920vip.net/](https://www.920vip.net/)
-
